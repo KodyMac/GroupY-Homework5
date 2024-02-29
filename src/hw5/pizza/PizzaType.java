@@ -2,7 +2,7 @@ package hw5.pizza;
 
 public enum PizzaType {
 	HAWAIIAN,
-	MARGHARITA,
+	MARGHERITA,
 	SUPREME,
 	VEGETARIAN;
 }
