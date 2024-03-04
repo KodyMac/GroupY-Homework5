@@ -10,12 +10,11 @@ import hw5.pizza.VegetarianPizza;
 public class PizzaCookingFactory {
 
 	/**
-	 * Creates an AbstractPizza instance and instantiates it 
-	 * according to the pizzaType parameter. It also sets the
-	 * pizzaOrderID of the pizza using the current orderIDCounter
-	 * of the pizza. The orderIDCounter will be incremented and 
-	 * assigned automatically on every creation of pizza,
-	 * to assign unique pizza order IDs
+	 * Creates an AbstractPizza instance and instantiates it according 
+	 * to the pizzaType parameter. It also sets the pizzaOrderID of the 
+	 * pizza using the current orderIDCounter of the pizza. The 
+	 * orderIDCounter will be incremented and assigned automatically on 
+	 * every creation of pizza, to assign unique pizza order IDs
 	 * 
 	 * @param pizzaType
 	 * @return AbstractPizza
