@@ -56,7 +56,7 @@ public class PizzaOrder {
 	public AbstractPizza getPizzaByOrderID(int orderID) {
 		for(AbstractPizza p : pizzaOrderList) {
 			if(p.getPizzaOrderID()==orderID) {  //do i need a copy?
-				return p;
+				return pizzaFactory.copyPizza(p);
 			}
 		}
 		return null;

@@ -34,4 +34,22 @@ public class PizzaCookingFactory {
 		
 		return null;
 	}
+	
+	/**
+	 * Copy constructor. Abstract pizza passed and a copy of it is returned
+	 * @param p pizza to copy
+	 * @return AbstractPizza
+	 */
+	public AbstractPizza copyPizza(AbstractPizza p) {
+		if(p instanceof HawaiianPizza) {
+			return new HawaiianPizza((HawaiianPizza)p);
+		} else if (p instanceof MargheritaPizza) {
+			return new MargheritaPizza((MargheritaPizza)p);
+		} else if (p instanceof SupremePizza) {
+			return new SupremePizza((SupremePizza)p);
+		} else if (p instanceof VegetarianPizza) {
+			return new VegetarianPizza((VegetarianPizza)p);
+		}
+		return null; //unknown pizza type
+	}
 }
