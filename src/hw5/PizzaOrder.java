@@ -1,6 +1,9 @@
 package hw5;
 
-import hw5.cookingStrategy.ICookingStrategy;
+//import hw5.cookingStrategy.BrickOvenCookingStrategy;
+//import hw5.cookingStrategy.ConventionalOvenCookingStrategy;
+import hw5.cookingStrategy.*;
+//import hw5.cookingStrategy.ICookingStrategy;
 import hw5.pizza.AbstractPizza;
 import hw5.pizza.CookingStyleType;
 import hw5.pizza.PizzaType;
@@ -116,18 +119,85 @@ public class PizzaOrder {
 		}
 		return false;
 }
-	
+	/**
+	 * Returns true if there is a pizza that doesn't have an assigned cooking
+	 * strategy, and returns false if there is none
+	 * @return boolean
+	 */
 	public boolean isThereAnyUncookedPizza() {
+		for(AbstractPizza pizza : pizzaOrderList) {
+			ICookingStrategy strategy = pizza.getCookingStrategy();
+			if(strategy == null) {
+				return true;
+			}
+		}
 		return false;
 	}
 	
+	/**
+	 * checks if there are any uncooked pizzas. If all pizzas are cooked, it calculates the total 
+	 * price of all pizzas and returns the total cart price. However, if there is at least one uncooked 
+	 * pizza it throws an exception (Use the general Exception class). The checkout method calls the 
+	 * isThereAnyUncookedPizza method to check for uncooked pizzas and throws an exception
+	 * @return double
+	 * @throws Exception
+	 */
 	public double checkout() throws Exception {
 		return 0.0;
 	}
-	
+	/**
+	 * Helper method that returns pizza with given orderID
+	 * @param orderID
+	 * @return
+	 */
+	private AbstractPizza getPizzaByID(int orderID) {
+		for(AbstractPizza p : pizzaOrderList) {
+			if(p.getPizzaOrderID()==orderID) {
+				return p;
+			}
+		}
+		return null;
+	}
+	/**
+	 * gets the pizza with the given order ID, instantiates the cookingStrategy according to the 
+	 * cookingStrategyType parameter. Calls the cook function for the pizza of the pizza order 
+	 * with the given order ID.
+	 * @param orderID
+	 * @param cookingStrategyType
+	 * @return boolean
+	 */
 	public boolean selectCookingStrategyByPizzaOrderID(int orderID, CookingStyleType cookingStrategyType) {
+		AbstractPizza pizza = getPizzaByID(orderID);
+		if(pizza != null) {
+			if(cookingStrategyType == CookingStyleType.BRICK_OVEN) {
+				BrickOvenCookingStrategy tempStrat = new BrickOvenCookingStrategy();
+				if(pizza.getCookingStrategy() != null && pizza.getCookingStrategy().getClass() == tempStrat.getClass()) {
+					return false;
+				}
+				return tempStrat.cook(pizza);
+			}
+			
+			if(cookingStrategyType == CookingStyleType.CONVENTIONAL_OVEN) {
+				ConventionalOvenCookingStrategy tempStrat = new ConventionalOvenCookingStrategy();
+				if(pizza.getCookingStrategy() != null && pizza.getCookingStrategy().getClass() == tempStrat.getClass()) {
+					return false;
+				}
+				return tempStrat.cook(pizza);
+			}
+		
+			if(cookingStrategyType == CookingStyleType.MICROWAVE) {
+				MicrowaveCookingStrategy tempStrat = new MicrowaveCookingStrategy();
+				if(pizza.getCookingStrategy() != null && pizza.getCookingStrategy().getClass() == tempStrat.getClass()) {
+					return false;
+				}
+				return tempStrat.cook(pizza);
+			}
+		}
 		return false;
+	
 	}
 }
+
+
 
 
