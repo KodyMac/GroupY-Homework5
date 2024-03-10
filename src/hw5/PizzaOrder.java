@@ -143,7 +143,15 @@ public class PizzaOrder {
 	 * @throws Exception
 	 */
 	public double checkout() throws Exception {
-		return 0.0;
+		if(isThereAnyUncookedPizza()) {
+			throw new Exception("There is uncooked pizza! You don't want to buy it raw!");
+		}
+		
+		double total = 0.0;
+		for(AbstractPizza pizza : pizzaOrderList) {
+			total+=pizza.getTotalPrice();
+		}
+		return total;
 	}
 	/**
 	 * Helper method that returns pizza with given orderID
