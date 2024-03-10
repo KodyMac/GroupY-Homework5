@@ -1,13 +1,11 @@
 package hw5;
 
-//import hw5.cookingStrategy.BrickOvenCookingStrategy;
-//import hw5.cookingStrategy.ConventionalOvenCookingStrategy;
 import hw5.cookingStrategy.*;
-//import hw5.cookingStrategy.ICookingStrategy;
-import hw5.pizza.AbstractPizza;
-import hw5.pizza.CookingStyleType;
-import hw5.pizza.PizzaType;
-import hw5.pizza.Toppings;
+import hw5.pizza.*;
+//import hw5.pizza.AbstractPizza;
+//import hw5.pizza.CookingStyleType;
+//import hw5.pizza.PizzaType;
+//import hw5.pizza.Toppings;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,6 +62,7 @@ public class PizzaOrder {
 		}
 		return null;
 	}
+	
 	/**
 	 * Creates a new pizza with the given pizzaType and adds it to the order list.
 	 * Returns true if successful and false if not.
@@ -78,11 +77,12 @@ public class PizzaOrder {
 		pizzaOrderList.add(p);
 		return true;
 	}
+	
 	/**
 	 * checks if topping is on pizza
 	 * @param topping
 	 * @param pizza
-	 * @return
+	 * @return boolean
 	 */
 	private boolean checkForTopping(Toppings topping, AbstractPizza p) {
 		List<Toppings> t=p.getToppingList();
@@ -108,6 +108,14 @@ public class PizzaOrder {
 		return false;
 	}
 	
+	/**
+	 * Checks if pizza object has specified topping, and if it does, it
+	 * removes the topping, updates price, and returns true. If the
+	 * topping isn't present, it returns false.
+	 * @param orderID
+	 * @param topping
+	 * @return boolean
+	 */
 	public boolean removeToppingFromPizza(int orderID, Toppings topping) {
 		AbstractPizza p = getPizzaByOrderID(orderID);
 		if(p!=null) {
@@ -119,6 +127,7 @@ public class PizzaOrder {
 		}
 		return false;
 }
+	
 	/**
 	 * Returns true if there is a pizza that doesn't have an assigned cooking
 	 * strategy, and returns false if there is none
@@ -153,6 +162,7 @@ public class PizzaOrder {
 		}
 		return total;
 	}
+	
 	/**
 	 * Helper method that returns pizza with given orderID
 	 * @param orderID
@@ -166,6 +176,7 @@ public class PizzaOrder {
 		}
 		return null;
 	}
+	
 	/**
 	 * gets the pizza with the given order ID, instantiates the cookingStrategy according to the 
 	 * cookingStrategyType parameter. Calls the cook function for the pizza of the pizza order 
@@ -205,7 +216,3 @@ public class PizzaOrder {
 	
 	}
 }
-
-
-
-

@@ -9,7 +9,7 @@ public interface ICookingStrategy {
 	 * There could only be one cooking strategy selected for a pizza. The 
 	 * cooking strategy changes the pizza price 
 	 * @param pizza
-	 * @return
+	 * @return boolean
 	 */
 	public boolean cook(AbstractPizza pizza);
 }
